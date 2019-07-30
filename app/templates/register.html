@@ -1,25 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Sign In</h1>
-    <form method="POST" action="" novalidate>
+    <h1>Register</h1>
+    <form method="POST" action="">
         {{form.hidden_tag()}} <!-- This is present to prevent CSRF attacks. Include this line and a secret key and WTForms takes care of protecting your site-->
         <p>
             {{form.username.label}}<br>
-            {{form.username(size=32)}}
+            {{form.username(size=32)}}<br>
             {% for error in form.username.errors %}
             <span style="color: red">[{{error}}]</span>
             {% endfor %}
         </p>
         <p>
+            {{form.email.label}}<br>
+            {{form.email(size=32)}}<br>
+            {% for error in form.email.errors %}
+            <span style="color: red">[{{error}}]</span>
+            {% endfor %}
+        </p>
+        <p>
             {{form.password.label}}<br>
-            {{form.password(size=32)}}
+            {{form.password(size=32)}}<br>
             {% for error in form.password.errors %}
             <span style="color: red">[{{error}}]</span>
             {% endfor %}
         </p>
-        <p>{{form.remember_me()}} {{form.remember_me.label}}</p>
+        <p>
+            {{form.password2.label}}<br>
+            {{form.password2(size=32)}}<br>
+            {% for error in form.password2.errors %}
+            <span style="color: red">[{{error}}]</span>
+            {% endfor %}
+        </p>
         <p>{{form.submit()}}</p>
     </form>
-    <p>New User? <a href={{url_for('register')}}>Click To Register!</a></p>
 {% endblock %}
