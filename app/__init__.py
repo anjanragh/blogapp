@@ -1,6 +1,10 @@
 from flask import Flask
 from config import Config
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 # __name__ is the name of the package in which this code is defined i.e 'app'
 app = Flask(__name__)
 app.config.from_object(Config)
-from app import routes
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+from app import routes, models
